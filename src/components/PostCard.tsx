@@ -1,9 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import type { Post } from '@/types/post';
+import type { Post, PostListItem } from '@/types/post';
 
-export default function PostCard({ post }: { post: Post }) {
+// 定义一个通用类型以适配Post或PostListItem
+type PostCardProps = {
+  post: Post | PostListItem;
+};
+
+export default function PostCard({ post }: PostCardProps) {
   return (
     <article className="border-b border-cream-300 pb-8 last:border-0">
       <Link href={`/${post.slug}`}>

@@ -4,12 +4,12 @@ export interface Post {
   date: string;
   content: string;
   excerpt: string;
-  coverImage?: string;
+  coverImage?: string | null;
   tags?: string[];
   category?: string;
   author?: {
     name: string;
-    picture?: string;
+    picture?: string | null;
   };
 }
 
@@ -18,7 +18,7 @@ export interface PostListItem {
   title: string;
   date: string;
   excerpt: string;
-  coverImage?: string;
+  coverImage?: string | null;
   tags?: string[];
   category?: string;
 }

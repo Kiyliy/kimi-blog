@@ -97,7 +97,7 @@ export async function getAllPosts(): Promise<PostListItem[]> {
     title: post.title,
     date: post.date,
     excerpt: post.excerpt,
-    coverImage: post.coverImage || undefined,
+    coverImage: post.coverImage || null,
     tags: post.tags,
     category: post.category,
   }));
@@ -141,7 +141,7 @@ export async function getPostsByCategory(category: string): Promise<PostListItem
       title: post.title,
       date: post.date,
       excerpt: post.excerpt,
-      coverImage: post.coverImage || undefined,
+      coverImage: post.coverImage || null,
       tags: post.tags,
       category: post.category,
     }));
@@ -156,7 +156,7 @@ export async function getPostsByTag(tag: string): Promise<PostListItem[]> {
       title: post.title,
       date: post.date,
       excerpt: post.excerpt,
-      coverImage: post.coverImage || undefined,
+      coverImage: post.coverImage || null,
       tags: post.tags,
       category: post.category,
     }));

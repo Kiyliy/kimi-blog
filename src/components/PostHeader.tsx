@@ -4,11 +4,11 @@ import { format } from 'date-fns';
 
 type Props = {
   title: string;
-  coverImage?: string;
+  coverImage?: string | null;
   date: string;
   author?: {
     name: string;
-    picture?: string;
+    picture?: string | null;
   };
   tags?: string[];
   category?: string;
