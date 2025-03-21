@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:notion": "node src/scripts/test-notion-client.mjs",
+    "test:notion": "node src/tests/test-notion-client-api.mjs",
     "test:notion-fetch": "node src/tests/notion-fetch.mjs"
   },
   "dependencies": {

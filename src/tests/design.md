@@ -12,11 +12,20 @@
 - 输出结果到文件系统
 - 提供命令行接口
 
+### Notion 客户端API测试 (`test-notion-client-api.mjs`)
+
+用于测试Notion客户端API模块的功能测试脚本。主要内容：
+- 测试从公共Notion页面获取和解析数据
+- 使用notion-client-api.mjs模块进行测试
+- 支持提取页面数据与集合/数据库数据
+- 提供清晰的命令行输出和结果保存
+
 ## 测试目录结构
 
 - `src/tests/` - 测试文件主目录
 - `src/tests/outputs/` - 测试结果输出目录
-- `src/scripts/test-notion-client.mjs` - 主要测试脚本入口点
+- `src/tests/test-notion-client-api.mjs` - 主要测试脚本入口点
+- `src/tests/notion-fetch.mjs` - Notion数据获取工具
 
 ## 推荐的测试方法
 
@@ -27,7 +36,7 @@
 npm run test:notion
 
 # 或直接使用node运行
-node src/scripts/test-notion-client.mjs [Notion页面URL或ID]
+node src/tests/test-notion-client-api.mjs [Notion页面URL或ID]
 
 # 使用简单的数据获取工具测试
 npm run test:notion-fetch
@@ -43,6 +52,9 @@ node src/tests/notion-fetch.mjs [Notion页面URL或ID]
 3. **可读性** - 测试结果清晰易读，便于识别问题
 4. **自动化** - 支持自动化执行，集成到开发流程中
 5. **非侵入性** - 测试不影响生产环境，通过环境变量配置测试行为
+6. **实用性** - 脚本设计专注于解决特定问题，提高开发效率
+7. **易用性** - 简单的命令行界面，清晰的输出信息
+8. **可靠性** - 适当的错误处理和退出状态码
 
 ## 测试策略
 
@@ -60,6 +72,18 @@ node src/tests/notion-fetch.mjs [Notion页面URL或ID]
 - 提供命令行工具测试特定功能
 - 方便开发人员快速验证功能变更
 - 支持调试信息输出
+
+## 测试类型
+
+### API测试
+- 测试第三方API集成（如Notion API）
+- 验证API连接和数据获取功能
+- 测试各种输入参数和边界条件
+
+### 数据处理测试
+- 测试数据源同步功能
+- 验证数据转换和解析功能
+- 测试数据格式和结构处理
 
 ## 运行环境
 

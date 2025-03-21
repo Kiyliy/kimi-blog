@@ -3,7 +3,7 @@
  * Notion客户端API测试脚本
  * 用于测试从公共Notion页面获取数据
  * 
- * 使用方法: node src/scripts/test-notion-client.mjs [Notion页面URL或ID]
+ * 使用方法: node src/tests/test-notion-client-api.mjs [Notion页面URL或ID]
  */
 import fs from 'fs';
 import path from 'path';
@@ -17,7 +17,7 @@ dotenv.config();
 // 获取当前文件目录
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const outputDir = path.join(__dirname, '../tests/outputs');
+const outputDir = path.join(__dirname, 'outputs');
 
 // 获取命令行参数或环境变量中的Notion页面ID
 const notionPageIdOrUrl = process.argv[2] || process.env.NOTION_PUBLIC_PAGE_ID || '1bd00c01c1608010ae44f4305a2be2db';

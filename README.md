@@ -94,10 +94,11 @@ git push -u origin master
 │   │   └── notion-client-api.mjs  # Notion非官方API客户端
 │   ├── middleware/      # 中间件（数据获取）
 │   ├── pages/           # Next.js页面
-│   ├── scripts/         # 脚本工具
 │   ├── styles/          # 全局样式
-│   ├── tests/           # 测试文件
-│   │   └── outputs/     # 测试输出结果
+│   ├── tests/           # 测试文件和测试脚本
+│   │   ├── outputs/     # 测试输出结果
+│   │   ├── notion-fetch.mjs      # Notion数据获取工具
+│   │   └── test-notion-client-api.mjs  # Notion API测试脚本
 │   └── types/           # TypeScript类型定义
 ├── .gitignore           # Git忽略文件
 ├── next.config.js       # Next.js配置
