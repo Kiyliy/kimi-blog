@@ -4,13 +4,17 @@
  * 测试Notion集成的命令行脚本
  * 
  * 使用方法: 
- * 1. 编译TypeScript: npx tsc src/scripts/test-notion.ts
- * 2. 运行: node src/scripts/test-notion.js
+ * npm run test:notion
  */
 
-import { runTest } from '../tests/notion-public.test';
+// 确保能够读取环境变量
+const dotenv = require('dotenv');
+dotenv.config({ path: '.env.local' });
+
+const { runTest } = require('../tests/notion-public.test');
 
 console.log('正在测试Notion公开页面访问...');
+console.log(`使用的环境变量: DATA_SOURCE=${process.env.DATA_SOURCE}, NOTION_PUBLIC_PAGE_ID=${process.env.NOTION_PUBLIC_PAGE_ID}`);
 runTest()
   .then(() => {
     console.log('测试完成');
