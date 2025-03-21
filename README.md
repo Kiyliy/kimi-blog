@@ -90,9 +90,14 @@ git push -u origin master
 ├── src/
 │   ├── components/      # React组件
 │   ├── hooks/           # 自定义React hooks
+│   ├── lib/             # 工具库
+│   │   └── notion-client-api.mjs  # Notion非官方API客户端
 │   ├── middleware/      # 中间件（数据获取）
 │   ├── pages/           # Next.js页面
+│   ├── scripts/         # 脚本工具
 │   ├── styles/          # 全局样式
+│   ├── tests/           # 测试文件
+│   │   └── outputs/     # 测试输出结果
 │   └── types/           # TypeScript类型定义
 ├── .gitignore           # Git忽略文件
 ├── next.config.js       # Next.js配置

@@ -101,6 +101,8 @@ node src/scripts/test-notion-client.mjs [Notion页面URL或ID]
 node src/scripts/test-notion-api.mjs
 ```
 
+所有测试脚本和示例代码都位于 `src/tests` 目录下，测试结果会保存在 `src/tests/outputs` 目录中。
+
 ## 自定义Notion数据解析
 
 如果需要自定义Notion数据的解析方式，可以修改以下文件：

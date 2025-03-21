@@ -17,7 +17,7 @@ dotenv.config();
 // 获取当前文件目录
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const outputDir = path.join(__dirname, '../../test-results');
+const outputDir = path.join(__dirname, '../tests/outputs');
 
 // 获取命令行参数或环境变量中的Notion页面ID
 const notionPageIdOrUrl = process.argv[2] || process.env.NOTION_PUBLIC_PAGE_ID || '1bd00c01c1608010ae44f4305a2be2db';

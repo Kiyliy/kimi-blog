@@ -21,7 +21,7 @@ const notion = new NotionAPI();
 const notionPageId = process.env.NOTION_PUBLIC_PAGE_ID || '1bd00c01c1608010ae44f4305a2be2db';
 
 // 输出目录
-const outputDir = path.join(__dirname, 'test-output');
+const outputDir = path.join(__dirname, 'outputs');
 
 // 确保输出目录存在
 function ensureOutputDirExists() {
