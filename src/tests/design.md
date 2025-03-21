@@ -4,13 +4,37 @@
 
 ## 组件结构
 
-### Notion 公开页面测试 (`notion-public.test.ts`)
+### Notion 公开页面测试 (`notion-fetch.mjs`)
 
 用于测试从公开 Notion 页面获取数据的功能。主要内容：
-- 测试 HTML 内容获取功能
-- 测试数据提取和解析逻辑
-- 验证错误处理机制
-- 提供命令行运行接口，方便快速测试集成
+- 通过Notion非官方API获取数据
+- 解析和分析页面结构
+- 输出结果到文件系统
+- 提供命令行接口
+
+## 测试目录结构
+
+- `src/tests/` - 测试文件主目录
+- `src/tests/outputs/` - 测试结果输出目录
+- `src/scripts/test-notion-client.mjs` - 主要测试脚本入口点
+
+## 推荐的测试方法
+
+对于Notion集成，建议使用以下测试命令：
+
+```bash
+# 使用npm运行主要测试脚本
+npm run test:notion
+
+# 或直接使用node运行
+node src/scripts/test-notion-client.mjs [Notion页面URL或ID]
+
+# 使用简单的数据获取工具测试
+npm run test:notion-fetch
+
+# 或直接使用node运行
+node src/tests/notion-fetch.mjs [Notion页面URL或ID]
+```
 
 ## 测试设计原则
 
@@ -42,6 +66,22 @@
 - 测试脚本可以独立运行或通过 npm scripts 执行
 - 支持自动读取 `.env.local` 或 `.env.test` 文件中的环境变量
 - 提供详细的测试结果输出，包括成功/失败信息和相关数据
+
+## 测试输出
+
+测试输出包括以下文件类型：
+
+1. **分析结果** - 以.md格式保存的页面结构分析，包含块类型统计
+2. **数据文件** - 以.json格式保存的完整原始数据
+3. **集合数据** - 以.json格式保存的集合/数据库内容
+
+所有输出文件均带有页面ID和时间戳，以便跟踪测试结果。
+
+## 注意事项
+
+- 测试结果会保存在 `src/tests/outputs` 目录下
+- 每次测试会生成带有时间戳的文件，避免覆盖以前的结果
+- 测试数据中可能包含敏感信息，请不要将其提交到版本控制系统
 
 ## 未来规划
 

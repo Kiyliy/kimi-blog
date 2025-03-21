@@ -1076,17 +1076,6 @@
           "hasMore": false
         }
       },
-      "1bd00c01-c160-8026-9be0-000c6849cbdf": {
-        "collection_group_results": {
-          "type": "results",
-          "blockIds": [
-            "1bd00c01-c160-80ac-98bd-c693a2f18c08",
-            "1bd00c01-c160-800e-8d48-c9f3e1eaa58c",
-            "1bd00c01-c160-80c4-8eb0-d91c527c611f"
-          ],
-          "hasMore": false
-        }
-      },
       "1bd00c01-c160-8027-8f89-000cd641c85a": {
         "board_columns": {
           "type": "groups",
@@ -1125,6 +1114,17 @@
         "results:status:[object Object]": {
           "type": "results",
           "blockIds": [],
+          "hasMore": false
+        }
+      },
+      "1bd00c01-c160-8026-9be0-000c6849cbdf": {
+        "collection_group_results": {
+          "type": "results",
+          "blockIds": [
+            "1bd00c01-c160-80ac-98bd-c693a2f18c08",
+            "1bd00c01-c160-800e-8d48-c9f3e1eaa58c",
+            "1bd00c01-c160-80c4-8eb0-d91c527c611f"
+          ],
           "hasMore": false
         }
       }
