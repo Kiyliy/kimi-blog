@@ -43,14 +43,15 @@ interface NotionBlogPost {
 }
 
 // 使用环境变量获取Notion页面ID
-const NOTION_PAGE_ID = process.env.NOTION_PUBLIC_PAGE_ID || '';
+const NOTION_PAGE_ID = process.env.NEXT_PUBLIC_NOTION_PAGE_ID || '';
 
 // 从公开Notion页面获取数据的实现
 export async function getPostsFromPublicNotion(): Promise<PostListItem[]> {
   try {
     // 检查配置
+    console.log('尝试从Notion获取博客列表, 页面ID:', NOTION_PAGE_ID);
     if (!NOTION_PAGE_ID) {
-      console.error('未配置NOTION_PUBLIC_PAGE_ID环境变量');
+      console.error('未配置NEXT_PUBLIC_NOTION_PAGE_ID环境变量');
       return [];
     }
     
@@ -106,8 +107,9 @@ export async function getPostsFromPublicNotion(): Promise<PostListItem[]> {
 export async function getPostDetailFromPublicNotion(slug: string): Promise<Post | null> {
   try {
     // 检查配置
+    console.log('尝试从Notion获取文章详情, 文章ID:', slug);
     if (!NOTION_PAGE_ID) {
-      console.error('未配置NOTION_PUBLIC_PAGE_ID环境变量');
+      console.error('未配置NEXT_PUBLIC_NOTION_PAGE_ID环境变量');
       return null;
     }
     
