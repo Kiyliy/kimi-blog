@@ -32,8 +32,8 @@
 1. 在`src/lib/notion-content.ts`中设置您的Notion页面ID：
 
 ```typescript
-// Notion页面ID - 您的公开页面
-const NOTION_PAGE_ID = '1bd00c01c1608010ae44f4305a2be2db';
+// Notion页面ID - 设置为您的公开页面ID
+const NOTION_PAGE_ID = process.env.NOTION_PUBLIC_PAGE_ID || '';
 ```
 
 2. 设置环境变量选择公开Notion页面作为数据源：

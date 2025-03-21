@@ -1,5 +1,7 @@
 // posts.ts 中间件 - 使用静态数据来模拟文章存储
 import { Post, PostListItem } from '@/types/post';
+// 导入公开Notion页面的数据获取函数
+import { getPostsFromPublicNotion, getPostDetailFromPublicNotion } from '@/lib/notion-content';
 
 // 示例文章数据，用于客户端渲染
 const SAMPLE_POSTS: Post[] = [
@@ -79,13 +81,23 @@ const SAMPLE_POSTS: Post[] = [
 
 // 获取所有文章
 export async function getAllPosts(): Promise<PostListItem[]> {
+  const source = await getDataSource();
+  
+  if (source === 'notion') {
+    // 使用Notion API
+    return fetchPostsFromNotion();
+  } else if (source === 'public-notion') {
+    // 使用公开Notion页面
+    return getPostsFromPublicNotion();
+  }
+  
   // 在实际应用中，这里可以从API获取数据
   return SAMPLE_POSTS.map(post => ({
     slug: post.slug,
     title: post.title,
     date: post.date,
     excerpt: post.excerpt,
-    coverImage: post.coverImage || null,
+    coverImage: post.coverImage || undefined,
     tags: post.tags,
     category: post.category,
   }));
@@ -93,6 +105,17 @@ export async function getAllPosts(): Promise<PostListItem[]> {
 
 // 获取特定文章
 export async function getPostBySlug(slug: string): Promise<Post | null> {
+  const source = await getDataSource();
+  
+  if (source === 'notion') {
+    // 使用Notion API
+    return getPostBySlugFromNotion(slug);
+  } else if (source === 'public-notion') {
+    // 使用公开Notion页面
+    return getPostDetailFromPublicNotion(slug);
+  }
+  
+  // 原有本地数据源逻辑
   const post = SAMPLE_POSTS.find(p => p.slug === slug);
   return post || null;
 }
@@ -118,7 +141,7 @@ export async function getPostsByCategory(category: string): Promise<PostListItem
       title: post.title,
       date: post.date,
       excerpt: post.excerpt,
-      coverImage: post.coverImage || null,
+      coverImage: post.coverImage || undefined,
       tags: post.tags,
       category: post.category,
     }));
@@ -133,21 +156,29 @@ export async function getPostsByTag(tag: string): Promise<PostListItem[]> {
       title: post.title,
       date: post.date,
       excerpt: post.excerpt,
-      coverImage: post.coverImage || null,
+      coverImage: post.coverImage || undefined,
       tags: post.tags,
       category: post.category,
     }));
 }
 
-// Notion API 集成的基础设施（占位，未来实现）
+// Notion API集成相关函数（仅占位，实际实现需要Notion API密钥）
 export async function fetchPostsFromNotion(): Promise<PostListItem[]> {
-  // 这里将实现从 Notion 获取文章的功能
-  // 目前返回空数组作为占位
+  console.warn('使用Notion API需要配置API密钥');
   return [];
 }
 
+export async function getPostBySlugFromNotion(slug: string): Promise<Post | null> {
+  console.warn('使用Notion API需要配置API密钥');
+  return null;
+}
+
+// 数据源类型
+export type DataSourceType = 'local' | 'notion' | 'public-notion';
+
 // 如果需要，可以添加一个中间件切换不同的数据源
-export async function getDataSource(): Promise<'local' | 'notion'> {
-  // 将来可以从配置或环境变量中获取数据源
-  return 'local';
+export async function getDataSource(): Promise<DataSourceType> {
+  // 从环境变量中获取数据源类型
+  const dataSource = process.env.DATA_SOURCE as DataSourceType;
+  return dataSource || 'local';
 }

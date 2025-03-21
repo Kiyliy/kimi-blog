@@ -3,13 +3,21 @@
  */
 import { fetchPublicNotionPage, extractNotionPageData } from '../lib/notion-public';
 
-// Notion页面ID
-const notionPageId = '1bd00c01c1608010ae44f4305a2be2db'; // 使用您提供的页面ID
+// 从环境变量获取Notion页面ID
+const notionPageId = process.env.NOTION_PUBLIC_PAGE_ID || '';
 
 async function runTest() {
   console.log('====================================');
   console.log('开始测试公开Notion页面访问');
   console.log('====================================');
+
+  // 检查是否配置了页面ID
+  if (!notionPageId) {
+    console.error('❌ 未配置NOTION_PUBLIC_PAGE_ID环境变量，测试中止');
+    return;
+  }
+
+  console.log(`使用页面ID: ${notionPageId}`);
 
   // 测试1: 获取原始HTML
   console.log('\n测试1: 获取公开Notion页面HTML');

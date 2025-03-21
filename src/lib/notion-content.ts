@@ -1,12 +1,18 @@
 import { extractNotionPageData } from './notion-public';
 import { Post, PostListItem } from '@/types/post';
 
-// Notion页面ID - 您的公开页面
-const NOTION_PAGE_ID = '1bd00c01c1608010ae44f4305a2be2db';
+// 使用环境变量获取Notion页面ID
+const NOTION_PAGE_ID = process.env.NOTION_PUBLIC_PAGE_ID || '';
 
 // 从公开Notion页面获取数据的实现
 export async function getPostsFromPublicNotion(): Promise<PostListItem[]> {
   try {
+    // 检查配置
+    if (!NOTION_PAGE_ID) {
+      console.error('未配置NOTION_PUBLIC_PAGE_ID环境变量');
+      return [];
+    }
+    
     // 提取页面数据
     const result = await extractNotionPageData(NOTION_PAGE_ID);
     
@@ -41,7 +47,7 @@ export async function getPostsFromPublicNotion(): Promise<PostListItem[]> {
           title: title,
           date: formatDate(block.value.created_time || Date.now()),
           excerpt: extractExcerpt(block, blockMap) || '无摘要',
-          coverImage: block.value.format?.page_cover || null,
+          coverImage: block.value.format?.page_cover || undefined,
           tags: extractTags(block, blockMap) || [],
           category: extractCategory(block, blockMap) || '未分类',
         };
@@ -60,6 +66,12 @@ export async function getPostsFromPublicNotion(): Promise<PostListItem[]> {
 // 获取单个文章详情
 export async function getPostDetailFromPublicNotion(slug: string): Promise<Post | null> {
   try {
+    // 检查配置
+    if (!NOTION_PAGE_ID) {
+      console.error('未配置NOTION_PUBLIC_PAGE_ID环境变量');
+      return null;
+    }
+    
     // 提取页面数据
     const result = await extractNotionPageData(NOTION_PAGE_ID);
     
@@ -89,7 +101,7 @@ export async function getPostDetailFromPublicNotion(slug: string): Promise<Post 
       date: formatDate(block.value.created_time || Date.now()),
       excerpt: extractExcerpt(block, blockMap) || '无摘要',
       content: buildContentFromBlocks(slug, blockMap) || '无内容',
-      coverImage: block.value.format?.page_cover || null,
+      coverImage: block.value.format?.page_cover || undefined,
       tags: extractTags(block, blockMap) || [],
       category: extractCategory(block, blockMap) || '未分类',
       author: {
